@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Decryption Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Simple Decryption Tool</h2>
+    
+    <label for="encrypted">Enter Encrypted Text:</label>
+    <input type="text" id="encrypted" placeholder="Paste encrypted text">
+    
+    <br>
+
+    <label for="secret">Enter Secret Key:</label>
+    <input type="text" id="secret" placeholder="Enter secret key">
+    
+    <br>
+
+    <button onclick="decrypt()">Decrypt</button>
+
+    <h3>Decrypted Output:</h3>
+    <p id="decrypted"></p>
+
+    <script>
+
+        //Nzg5MjQ0OTk4Nw==
+
+        function decrypt() {
+            // encrypt()
+            const encryptedText = document.getElementById("encrypted").value;
+            const secret = document.getElementById("secret").value;
+            if (!encryptedText || !secret) {
+                alert("Please enter encrypted text and secret key!");
+                return;
+            }
+            let parser = secret.toLowerCase()
+            if(!['snowwhite','snow-white','show white'].includes(parser)){
+                alert("Incorrect! Hint: Apple a day keeps doctor away");
+                return;
+            }
+            try {
+                const decoded = atob(encryptedText); // Base64 decoding
+                console.log(decoded)
+                
+                const decrypted = decoded.replace(secret, ""); // Remove secret
+                console.log(decrypted,"decrypted")
+                document.getElementById("decrypted").innerText = decoded;
+            } catch (e) {
+                alert("Invalid encrypted text!");
+            }
+        }
+    </script>
+
+</body>
+</html>
